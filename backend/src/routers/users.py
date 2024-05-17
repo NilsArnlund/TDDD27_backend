@@ -71,7 +71,7 @@ async def sign_in(
         httponly=True,
         max_age=1800,
         expires=1800,
-        samesite="Lax",
+        samesite="None",
         secure=False,
     )
     response.set_cookie(
@@ -80,7 +80,7 @@ async def sign_in(
         httponly=True,
         max_age=604800,  
         expires=604800, 
-        samesite="Lax",
+        samesite="None",
         secure=False,
     )
 
@@ -105,7 +105,7 @@ def get_new_access_token(request: Request):
         httponly=True,
         max_age=1800,
         expires=1800,
-        samesite="Lax",
+        samesite="None",
         secure=False,
     )
     return response
