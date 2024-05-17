@@ -17,7 +17,7 @@ from src.auth.jwthandler import (
 
 router = APIRouter()
 
-json_file_path = "/backend/assets/pictures.json"
+json_file_path = "../assets/pictures.json"
 with open (json_file_path, "r") as pictures_file: 
    pictures_object = json.load(pictures_file)
 
