@@ -223,13 +223,13 @@ async def websocket_endpoint(websocket:WebSocket, room_id: str, client_id: str, 
             await game_crud.create_game(db=db, game_id=room_id)
             print("CREATED GAME", flush=True)
             room  = room_dict[room_id]
-            await room.broadcast({"msg":"IN IF", "type":"connected"}, username)
+            await room.broadcast("IN IF", username)
             room.connections[int(client_id)] = websocket
             await gamestates_crud.create_game_state(db=db, game_id=room_id, player_id=int(client_id), username=username, is_room_leader = True)
             print("CREATED GAME STATE", flush=True)
         else:
             room  = room_dict[room_id]
-            await room.broadcast({"msg":"IN ELSE", "type":"connected"}, username)
+            await room.broadcast("IN ELSE", username)
             room.connections[int(client_id)] = websocket
             await gamestates_crud.create_game_state(db=db, game_id=room_id, player_id=int(client_id), username=username)
 
