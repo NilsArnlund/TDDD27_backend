@@ -248,7 +248,7 @@ async def websocket_endpoint(websocket:WebSocket, room_id: str, client_id: str, 
                await room.send_restart_game(db)
             else:
                return "Tjelo :)"
-            break # Testing
+        
     except WebSocketDisconnect:
         if room_id in room_dict:
             room = room_dict[room_id]
