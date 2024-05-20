@@ -210,6 +210,7 @@ def get_new_random_picture_key(used_keys):
 
 @router.websocket('/ws/{room_id}/{client_id}')
 async def websocket_endpoint(websocket:WebSocket, room_id: str, client_id: str, db: Session = Depends(get_db)):
+    print(room_id, flush=True)
     user = await users_crud.get_user_by_id(db=db, id=client_id)
     username = user.username
     room_id = int(room_id)
@@ -217,17 +218,21 @@ async def websocket_endpoint(websocket:WebSocket, room_id: str, client_id: str, 
     try:
         await websocket.accept()
         if room_id not in room_dict:
+            print("CREATING NEW ROOM", flush=True)
             room_dict[room_id] = Room(room_id)
             await game_crud.create_game(db=db, game_id=room_id)
+            print("CREATED GAME", flush=True)
             room  = room_dict[room_id]
             room.connections[int(client_id)] = websocket
             await gamestates_crud.create_game_state(db=db, game_id=room_id, player_id=int(client_id), username=username, is_room_leader = True)
+            print("CREATED GAME STATE", flush=True)
         else:
             room  = room_dict[room_id]
             room.connections[int(client_id)] = websocket
             await gamestates_crud.create_game_state(db=db, game_id=room_id, player_id=int(client_id), username=username)
 
         await room.broadcast({"msg":"Connected to the lobby", "type":"connected"}, username) # Creates a log in browser that a user joined
+        print("CONNECT MESSAGE SENT", flush=True)
 
         while True:
             data = await websocket.receive_json()
