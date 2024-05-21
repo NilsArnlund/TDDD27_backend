@@ -261,7 +261,7 @@ async def websocket_endpoint(websocket:WebSocket, room_id: str, client_id: str, 
 
             if userid_to_remove is not None:
                 del room.connections[userid_to_remove]
-                await game_crud.delete_game_state(db=db, room_id=room_id, player_id=userid_to_remove)
+                await gamestates_crud.delete_game_state(db=db, room_id=room_id, player_id=userid_to_remove)
 
             if len(room.connections) == 0:
                 del room_dict[room_id]
