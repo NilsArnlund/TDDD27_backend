@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-SQLALCHEMY_DATABASE_URL = "postgres://sql_app_user:QztL7UYGvyCUratCJ6gWeYOIMzYrReTK@dpg-cp65u8ol6cac738ehid0-a.frankfurt-postgres.render.com/sql_app"
+SQLALCHEMY_DATABASE_URL = "postgresql://sql_app_user:QztL7UYGvyCUratCJ6gWeYOIMzYrReTK@dpg-cp65u8ol6cac738ehid0-a.frankfurt-postgres.render.com/sql_app"
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
