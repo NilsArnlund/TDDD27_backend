@@ -72,7 +72,7 @@ async def sign_in(
         max_age=1800,
         expires=1800,
         samesite="None",
-        secure=False,
+        secure=True,
     )
     response.set_cookie(
         "Refresh-Token",
@@ -81,7 +81,7 @@ async def sign_in(
         max_age=604800,  
         expires=604800, 
         samesite="None",
-        secure=False,
+        secure=True,
     )
 
     return response
@@ -106,7 +106,7 @@ def get_new_access_token(request: Request):
         max_age=1800,
         expires=1800,
         samesite="None",
-        secure=False,
+        secure=True,
     )
     return response
 
