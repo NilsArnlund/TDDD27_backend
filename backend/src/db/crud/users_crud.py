@@ -27,7 +27,7 @@ async def create_user(db: Session, user: UserIn) -> UserOut:
     # Encrypt the user's password
     user.password = pwd_context.hash(user.password)
 
-    profile_picture = "default" + str(random.randint(0,9)) + ".png"
+    profile_picture = "default" + str(random.randint(1,10)) + ".png"
 
     # Create a new user instance
     new_user = models.User(
